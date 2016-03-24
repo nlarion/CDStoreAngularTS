@@ -3,18 +3,29 @@ import { Cd } from './cd.model';
 import { CdComponent } from './cd.component';
 import { CartPipe } from './cart.pipe';
 import { CdListComponent } from './cd-list.component';
+import { CartListComponent } from './cart-list.component';
 
 @Component({
   selector: 'my-app',
-  directives: [CdListComponent],
+  directives: [CdListComponent, CartListComponent],
   template:`
     <div class="container">
       <h1>This CD Store</h1>
       <hr>
-      <cd-list
-        [cdList]="cds"
-        (onCdSelect)="cdWasSelected($event)">
-      </cd-list>
+      <div class="row">
+        <div class="col-sm-6">
+          <cd-list
+            [cdList]="cds"
+            (onCdSelect)="cdWasSelected($event)">
+          </cd-list>
+        </div>
+        <div class="col-sm-6">
+          <cart-list
+            [cdList]="cds"
+            (onCdSelect)="cdWasSelected($event)">
+          </cart-list>
+        </div>
+      </div>
     </div>
   `
 })

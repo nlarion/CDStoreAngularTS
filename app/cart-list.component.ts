@@ -1,35 +1,29 @@
 import { Component, EventEmitter } from 'angular2/core';
 import { CdComponent } from './cd.component';
 import { Cd } from './cd.model';
-import { GenrePipe } from './genre.pipe';
 import { CartPipe } from './cart.pipe';
 import { CartTotalComponent } from './cart-total.component';
+import { CartDisplayComponent } from './cart-display.component';
 
 @Component({
-  selector: 'cd-list',
+  selector: 'cart-list',
   inputs: ['cdList'],
   outputs: ['onCdSelect'],
-  pipes: [GenrePipe],
-  directives: [CdComponent],
+  pipes: [CartPipe],
+  directives: [CartTotalComponent, CartDisplayComponent],
   template: `
-    <h4>Filter by Genre</h4>
-    <select
-    (change) = "onChange($event.target.value)">
-      <option value="all" selected="selected"> All Genres</option>
-      <option value="Grunge">Grunge</option>
-      <option value="Hip-Hop">Hip-Hop</option>
-      <option value="Country">Country</option>
-      <option value="Pop">Pop</option>
-    </select>
-    <cd-display *ngFor="#currentCd of cdList | genre:filterGenre"
+    <h4>Items in my cart</h4>
+    <cart-display *ngFor="#currentCd of cdList | cart:filterCart"
     (click)="cdClicked(currentCd)"
     [cd]="currentCd">
-    </cd-display>
-
+    </cart-display>
+    <cart-total [cdList]="cdList"></cart-total>
+    <button type="button" class="btn btn-success"
+    (click)="purchase()">Purchase</button>
   `
 })
 
-export class CdListComponent {
+export class CartListComponent {
   public cdList: Cd[];
   public onCdSelect: EventEmitter<any>;
   public selectedCd: Cd;
@@ -43,7 +37,11 @@ export class CdListComponent {
     this.selectedCd = clickedCd;
     this.onCdSelect.emit(clickedCd);
   }
-  onChange(filterOption){
-    this.filterGenre = filterOption;
+  onChange2(filterOption){
+    this.filterCart = filterOption;
+  }
+  purchase(){
+    var ccInfo = prompt("Please enter your credit card info");
+    alert("We will store card number " + ccInfo + " in  safe place");
   }
 }
