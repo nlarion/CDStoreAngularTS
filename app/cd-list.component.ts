@@ -3,13 +3,14 @@ import { CdComponent } from './cd.component';
 import { Cd } from './cd.model';
 import { GenrePipe } from './genre.pipe';
 import { CartPipe } from './cart.pipe';
+import { CartTotalComponent } from './cart-total.component';
 
 @Component({
   selector: 'cd-list',
   inputs: ['cdList'],
   outputs: ['onCdSelect'],
   pipes: [GenrePipe, CartPipe],
-  directives: [CdComponent],
+  directives: [CdComponent, CartTotalComponent],
   template: `
     <h4>Filter by Genre</h4>
     <select
@@ -30,6 +31,7 @@ import { CartPipe } from './cart.pipe';
     (click)="cdClicked(currentCd)"
     [cd]="currentCd">
     </cd-display>
+    <cart-total [cdList]="cdList"></cart-total>
   `
 })
 
