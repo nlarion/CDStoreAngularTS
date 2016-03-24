@@ -1,5 +1,5 @@
-# Michael Anthony Smith, March 21, 2016
+# Michael Anthony Smith & Neil Larion, March 24, 2016
 
 #### This is an app built with the Angular framework.
 
-&copy; Michael Anthony Smith, 2016 
+&copy; Michael Anthony Smith & Neil Larion, 2016
