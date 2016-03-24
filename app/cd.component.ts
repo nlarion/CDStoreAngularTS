@@ -11,8 +11,12 @@ import { Cd } from './cd.model';
     <li>{{ cd.price }}</li>
     <li>{{ cd.genre }}</li>
   </ul>
+  <button type="button" class="btn btn-danger" (click)="toggleCart(true)">Add to Cart</button>
   `
 })
 export class CdComponent {
   public cd : Cd;
+  toggleCart(setState: boolean){
+    this.cd.cart = setState;
+  }
 }

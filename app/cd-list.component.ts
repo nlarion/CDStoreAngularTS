@@ -2,6 +2,7 @@ import { Component, EventEmitter } from 'angular2/core';
 import { CdComponent } from './cd.component';
 import { Cd } from './cd.model';
 import { GenrePipe } from './genre.pipe';
+import { CartPipe } from './cart.pipe';
 
 @Component({
   selector: 'cd-list',
