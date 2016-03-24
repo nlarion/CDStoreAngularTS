@@ -8,7 +8,7 @@ import { Cd } from './cd.model';
   <h3>{{ cd.album }}</h3>
   <ul>
     <li>{{ cd.artist }}</li>
-    <li>{{ cd.price }}</li>
+    <li>$ {{ cd.price }}</li>
     <li>{{ cd.genre }}</li>
   </ul>
   <button type="button" class="btn btn-danger" (click)="toggleCart(true)">Add to Cart</button>

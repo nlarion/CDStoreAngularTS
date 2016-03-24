@@ -8,7 +8,7 @@ import { CartPipe } from './cart.pipe';
   selector: 'cd-list',
   inputs: ['cdList'],
   outputs: ['onCdSelect'],
-  pipes: [GenrePipe],
+  pipes: [GenrePipe, CartPipe],
   directives: [CdComponent],
   template: `
     <h4>Filter by Genre</h4>
@@ -20,7 +20,13 @@ import { CartPipe } from './cart.pipe';
       <option value="Country">Country</option>
       <option value="Pop">Pop</option>
     </select>
-    <cd-display *ngFor="#currentCd of cdList | genre:filterGenre"
+    <h4>Show item's in my cart</h4>
+    <select
+    (change) = "onChange2($event.target.value)">
+      <option value="all" selected="selected">All</option>
+      <option value="cart">My Cart</option>
+    </select>
+    <cd-display *ngFor="#currentCd of cdList | genre:filterGenre | cart:filterCart"
     (click)="cdClicked(currentCd)"
     [cd]="currentCd">
     </cd-display>
@@ -32,6 +38,7 @@ export class CdListComponent {
   public onCdSelect: EventEmitter<any>;
   public selectedCd: Cd;
   public filterGenre: string ="all";
+  public filterCart: string ="all";
   constructor() {
     this.onCdSelect = new EventEmitter();
   }
@@ -42,5 +49,8 @@ export class CdListComponent {
   }
   onChange(filterOption){
     this.filterGenre = filterOption;
+  }
+  onChange2(filterOption){
+    this.filterCart = filterOption;
   }
 }
