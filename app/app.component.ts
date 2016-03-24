@@ -1,28 +1,8 @@
 import { Component, EventEmitter } from 'angular2/core';
 import { Cd } from './cd.model';
-
-@Component({
-  selector: 'cd-list',
-  inputs: ['cdList'],
-  outputs: ['onCdSelect'],
-  template: `
-    <h3 *ngFor="#currentCd of cdList" (click)="cdClicked(currentCd)">
-      {{ currentCd.album }}
-    </h3>
-  `
-})
-
-export class CdListComponent {
-  public cdList: Cd[];
-  public onCdSelect: EventEmitter<any>;
-  constructor() {
-    this.onCdSelect = new EventEmitter();
-  }
-  cdClicked(clickedCd: Cd): void {
-    console.log('child', clickedCd);
-    this.onCdSelect.emit(clickedCd);
-  }
-}
+import { CdComponent } from './cd.component';
+import { CartPipe } from './cart.pipe';
+import { CdListComponent } from './cd-list.component';
 
 @Component({
   selector: 'my-app',
